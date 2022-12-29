@@ -2,6 +2,7 @@ on:
   push:
     paths:
       - terraform/**
+      - .github/
 
 jobs:
   print-env:
