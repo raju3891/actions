@@ -18,5 +18,5 @@ jobs:
         working-directory: ./terraform
         run: |
           root_directory="$(git rev-parse --show-toplevel)"
-          changed_files="$(git diff --name-only HEAD^ HEAD ${root_directory}/terraform)"
-          echo "${changed_files}"
+          changed_env="$(git diff --name-only HEAD^ HEAD ${root_directory}/terraform | cut -d "/" -f 2 | sort | uniq)"
+          echo "${changed_env}"
