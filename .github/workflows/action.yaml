@@ -11,10 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
 
       - name: Print folder name
         working-directory: ./terraform
         run: |
-          root_directory="$(git rev-parse --show-toplevel)"
-          changed_files="$(git diff origin/master... HEAD^ --name-only)"
+          changed_files="$(git diff HEAD^ HEAD--name-only)"
           echo "${changed_files}"
