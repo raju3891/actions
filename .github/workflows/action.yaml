@@ -2,7 +2,7 @@ on:
   push:
     paths:
       - terraform/**
-      - .github/
+      - .github/**
 
 jobs:
   print-env:
