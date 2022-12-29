@@ -17,5 +17,5 @@ jobs:
       - name: Print folder name
         working-directory: ./terraform
         run: |
-          changed_files="$(git diff HEAD^ HEAD --name-only)"
+          changed_files="$(git diff --name-only HEAD^ HEAD ./terraform)"
           echo "${changed_files}"
