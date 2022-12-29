@@ -13,4 +13,4 @@ jobs:
 
       - name: Print folder name
         run: |
-          
+          git diff --name-only "HEAD^" "HEAD" "./terraform"
