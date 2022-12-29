@@ -23,7 +23,7 @@ jobs:
           root_directory="$(git rev-parse --show-toplevel)"
           changed_env="$(git diff --name-only HEAD^ HEAD ${root_directory}/terraform | cut -d "/" -f 2 | sort | uniq)"
           if [[ "${#x}" > 1 ]]; then
-            echo "Mutliple environment changes in single PR is not allowed"
+            echo "Mutliple environment changes in single PR is not allowed."
             exit 1
           fi
           echo "env=${changed_env}" >> $GITHUB_OUTPUT
