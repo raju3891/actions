@@ -5,8 +5,10 @@ on:
       - .github/**
 
 jobs:
-  print-env:
-    name: Set env
+  fetch-env:
+    name: Fetch env
+    outputs:
+      env: ${{ steps.env-name.outputs.env }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,9 +16,24 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Print folder name
+      - name: Fetch environment details
+        id: env-name
         working-directory: ./terraform
         run: |
           root_directory="$(git rev-parse --show-toplevel)"
           changed_env="$(git diff --name-only HEAD^ HEAD ${root_directory}/terraform | cut -d "/" -f 2 | sort | uniq)"
-          echo "${changed_env}"
+          if [[ "${#x}" > 1 ]]; then
+            echo "Mutliple environment changes in single PR is not allowed"
+            exit 1
+          fi
+          echo "env=${changed_env}" >> $GITHUB_OUTPUT
+  print-env:
+    name: Print env
+    needs: fetch-env
+    environment:
+      name: ${{ needs.fetch-env.outputs.env }}
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+      echo ${{ secrets.name }}
+    
