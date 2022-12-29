@@ -35,5 +35,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-      echo ${{ secrets.name }}
+        echo ${{ secrets.name }}
     
