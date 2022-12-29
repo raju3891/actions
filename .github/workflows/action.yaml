@@ -17,5 +17,6 @@ jobs:
       - name: Print folder name
         working-directory: ./terraform
         run: |
-          changed_files="$(git diff --name-only HEAD^ HEAD ./terraform)"
+          root_directory="$(git rev-parse --show-toplevel)"
+          changed_files="$(git diff --name-only HEAD^ HEAD ${root_directory}/terraform)"
           echo "${changed_files}"
