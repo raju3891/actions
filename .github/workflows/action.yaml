@@ -15,7 +15,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
-
       - name: Fetch environment details
         id: env-name
         working-directory: ./terraform
